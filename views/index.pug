@@ -1,0 +1,23 @@
+extends layout
+
+block content
+
+    section.hero.is-light.is-fullheight
+        .hero-body
+            .container
+                h1.title
+                    | MongoDB connection: 
+                    if (mongoConnected)
+                        span.tag.is-success CONNECTED
+                    else
+                        span.tag.is-danger FAILED
+                h2.subtitle
+                    | Environment Vars:
+                table
+                    each key in Object.keys(env).filter(k => env[k])
+                        tr
+                            td
+                                span(style="min-width': '120px'")= key
+                            td
+                                span.tag.is-info= env[key]
+
